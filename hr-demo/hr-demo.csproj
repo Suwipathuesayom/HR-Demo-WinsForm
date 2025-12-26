@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<RootNamespace>hr_demo</RootNamespace>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.22" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.22" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Corrected project reference path -->
+		<ProjectReference Include="..\hr-demo-data\hr-demo-data.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="SignIn.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="SignUp.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<!-- Ensure appsettings.json is copied to the output folder so Host.CreateDefaultBuilder can find it at runtime -->
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>
